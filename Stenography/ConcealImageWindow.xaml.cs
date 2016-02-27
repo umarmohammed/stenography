@@ -44,6 +44,7 @@ namespace Stenography
             }
 
             // TODO: make this code asynchronous
+            // TODO: put this code in a try catch, display exception error in message box
             StegoImage stegImage = new StegoImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
             SaveFileDialog fd = new SaveFileDialog();
             bool? result = fd.ShowDialog();

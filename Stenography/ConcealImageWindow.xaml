@@ -16,11 +16,27 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0" Grid.Row="0" x:Name="visibleImage" HorizontalAlignment="Left" Height="300"  Width="300" VerticalAlignment="Top"/>
-        <Button Grid.Column="0" Grid.Row="1" x:Name="loadVisibleImageButton" Content="Load Visible Image" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="loadVisibleImageButton_Click"/>
-        <Image Grid.Column="1" Grid.Row="0" x:Name="hiddenImage" HorizontalAlignment="Left" Height="300" Width="300" VerticalAlignment="Top"/>
-        <Button Grid.Column="1" Grid.Row="1" x:Name="loadHiddenImageButton" Content="Load Hidden Image" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="loadHiddenImageButton_Click"/>
-        <Button Grid.Column="1" Grid.Row="1" x:Name="saveStegoImageButton" Content="Save Stego Image" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="saveStegoImageButton_Click"/>
+        <Line X1="0" Y1="2" X2="1"  Y2="2" 
+              Stroke="Black" StrokeThickness="5" Stretch="Uniform" Grid.ColumnSpan="2" Margin="0,185,0,102" Grid.RowSpan="2"/>
+
+        <Rectangle Grid.Column="0" Grid.Row="0" x:Name="rect1" Height="300" Width="300" Fill="#FFA8A8A8"/>
+        <Line X1="1" Y1="0" X2="1"  Y2="1" 
+              Stroke="Black" StrokeThickness="5" Stretch="Uniform" Grid.ColumnSpan="2" Margin="306,0,295,0" >
+            <Line.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.401"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Line.RenderTransform>
+        </Line>
+        <Image Grid.Column="0" Grid.Row="0" x:Name="visibleImage" HorizontalAlignment="Center" Height="300"  Width="300" VerticalAlignment="Top"/>
+        <Button Grid.Column="0" Grid.Row="1" x:Name="loadVisibleImageButton" Content="Load Visible Image" HorizontalAlignment="Center"  VerticalAlignment="Top" Click="loadVisibleImageButton_Click"/>
+        <Rectangle Grid.Column="1" Grid.Row="0" x:Name="rect2" Height="300" Width="300" Fill="#FFA8A8A8"/>
+        <Image Grid.Column="1" Grid.Row="0" x:Name="hiddenImage" HorizontalAlignment="Center" Height="300" Width="300" VerticalAlignment="Top"/>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="loadHiddenImageButton" Content="Load Hidden Image" HorizontalAlignment="Center"  VerticalAlignment="Top" Click="loadHiddenImageButton_Click"/>
+        <Button Grid.Column="0" Grid.Row="1" x:Name="saveStegoImageButton" Content="Save Stego Image" HorizontalAlignment="Center" VerticalAlignment="Center" Click="saveStegoImageButton_Click" Grid.ColumnSpan="2"/>
 
 
     </Grid>
