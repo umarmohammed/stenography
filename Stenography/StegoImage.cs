@@ -15,7 +15,7 @@ namespace Stenography
         private Bitmap hiddenImage;
         private Bitmap stegImage;
 
-        private enum Channel
+        public enum Channel
         {
             R,
             G,

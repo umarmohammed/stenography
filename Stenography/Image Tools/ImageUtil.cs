@@ -39,6 +39,18 @@ namespace Stenography.Image_Tools
             return ResizeBitmap(targetImageBitmap, scale);
         }
 
+        public static int toInt(this BitArray bitArray)
+        {
+
+            if (bitArray.Length > 32)
+                throw new ArgumentException("Argument length shall be at most 32 bits.");
+
+            int[] array = new int[1];
+            bitArray.CopyTo(array, 0);
+            return array[0];
+
+        }
+
         private static Bitmap ResizeBitmap(Bitmap sourceBMP, double scale)
         {
             int width = Convert.ToInt32(sourceBMP.Size.Width * scale);
@@ -120,18 +132,6 @@ namespace Stenography.Image_Tools
             }
 
             return sourceImageSize != targetImageSize;
-        }
-
-        public static int toInt(this BitArray bitArray)
-        {
-
-            if (bitArray.Length > 32)
-                throw new ArgumentException("Argument length shall be at most 32 bits.");
-
-            int[] array = new int[1];
-            bitArray.CopyTo(array, 0);
-            return array[0];
-
         }
     }
 }

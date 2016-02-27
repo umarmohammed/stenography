@@ -8,6 +8,6 @@
         Title="MainWindow" Height="350" Width="300">
     <Grid>
         <Button x:Name="createImageButton" Content="Conceal an Image" HorizontalAlignment="Left" Margin="50,93,0,0" VerticalAlignment="Top" Click="createImageButton_Click"/>
-        <Button x:Name="button1" Content="Load a hidden Image" HorizontalAlignment="Left" Margin="50,149,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button1" Content="Load a hidden Image" HorizontalAlignment="Left" Margin="50,149,0,0" VerticalAlignment="Top" Click="button1_Click"/>
     </Grid>
 </Window>

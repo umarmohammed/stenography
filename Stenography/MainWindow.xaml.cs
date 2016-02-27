@@ -30,5 +30,11 @@ namespace Stenography
             ConcealImageWindow concealWindow = new ConcealImageWindow();
             concealWindow.Show();
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayImageWindow displayImageWindow = new DisplayImageWindow();
+            displayImageWindow.Show();
+        }
     }
 }

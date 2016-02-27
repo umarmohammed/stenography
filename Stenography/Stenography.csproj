@@ -56,11 +56,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DisplayImageWindow.xaml.cs">
+      <DependentUpon>DisplayImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HiddenImageExtractor.cs" />
     <Compile Include="Image Tools\ImageUtil.cs" />
     <Compile Include="Image Tools\PixelMap.cs" />
     <Compile Include="Image Tools\PixelMapper.cs" />
     <Compile Include="StegoImage.cs" />
+    <Compile Include="Util.cs" />
     <Page Include="ConcealImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DisplayImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
