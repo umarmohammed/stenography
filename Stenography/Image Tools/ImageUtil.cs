@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Collections;
+using System.Windows.Media.Imaging;
+using System.Runtime.InteropServices;
 
 namespace Stenography.Image_Tools
 {
@@ -18,14 +20,6 @@ namespace Stenography.Image_Tools
 
     static class ImageUtil
     {
-        public static Bitmap CropAtRect(this Bitmap b, Rectangle r)
-        {
-            Bitmap nb = new Bitmap(r.Width, r.Height);
-            Graphics g = Graphics.FromImage(nb);
-            g.DrawImage(b, -r.X, -r.Y);
-            return nb;
-        }
-
         //1 Crops the targetImageBitmap so that it has the same aspect ratio defined by SourceImageSize.
         //2 Resizes targetImageBitmap to scale * sourceImageSize
         public static Bitmap CropAndResizeBitmap(Size sourceImageSize, Bitmap targetImageBitmap, double scale)
@@ -39,6 +33,7 @@ namespace Stenography.Image_Tools
             return ResizeBitmap(targetImageBitmap, scale);
         }
 
+        // Convert extension method convert a BitArray to an integer
         public static int toInt(this BitArray bitArray)
         {
 
@@ -51,6 +46,29 @@ namespace Stenography.Image_Tools
 
         }
 
+        [DllImport("gdi32")]
+        static extern int DeleteObject(IntPtr o);
+
+        // Convert a System.Drawing.Bitmap to BitmapSource so that it can be 
+        // used as a source for a WPF Image
+        public static BitmapSource loadBitmap(System.Drawing.Bitmap source)
+        {
+            IntPtr ip = source.GetHbitmap();
+            BitmapSource bs = null;
+            try
+            {
+                bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(ip,
+                   IntPtr.Zero, System.Windows.Int32Rect.Empty,
+                   System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
+            }
+            finally
+            {
+                DeleteObject(ip);
+            }
+
+            return bs;
+        }
+
         private static Bitmap ResizeBitmap(Bitmap sourceBMP, double scale)
         {
             int width = Convert.ToInt32(sourceBMP.Size.Width * scale);
@@ -59,6 +77,14 @@ namespace Stenography.Image_Tools
             using (Graphics g = Graphics.FromImage(result))
                 g.DrawImage(sourceBMP, 0, 0, width, height);
             return result;
+        }
+
+        private static Bitmap CropAtRect(this Bitmap b, Rectangle r)
+        {
+            Bitmap nb = new Bitmap(r.Width, r.Height);
+            Graphics g = Graphics.FromImage(nb);
+            g.DrawImage(b, -r.X, -r.Y);
+            return nb;
         }
 
         private static ImageOrientation getOrientation(Size imageSize)

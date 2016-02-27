@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Stenography"
         mc:Ignorable="d"
         Title="DisplayImageWindow" Height="auto" Width="auto">
-    <Grid HorizontalAlignment="Left" Height="476" Margin="-4,2,-3,-3" VerticalAlignment="Top" Width="759" RenderTransformOrigin="0.5,0.5">
+    <Grid>
         <Image x:Name="stegImage" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" />
         <Image x:Name="hiddenImage" HorizontalAlignment="Left" Height="300" Margin="749,10,0,0" VerticalAlignment="Top" />
         <Button x:Name="loadImageButton" Content="Load Image" HorizontalAlignment="Left" Margin="10,336,0,0" VerticalAlignment="Top" Width="76" Click="loadImageButton_Click"/>

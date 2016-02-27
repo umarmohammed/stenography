@@ -33,6 +33,7 @@ namespace Stenography
             hiddenImage = ImageUtil.CropAndResizeBitmap(visibleImage.Size, hiddenImage, 0.5);
             stegImage = new Bitmap(visibleImage.Width, visibleImage.Height);
          
+            // TODO: Move all this code into a common Stenography Algorithm class
             PixelMapper pixelMapper = new PixelMapper(visibleImage.Size, hiddenImage.Size);
 
             foreach (PixelMap pm in pixelMapper.getHiddenToVisiblePixelMapEnumerator())

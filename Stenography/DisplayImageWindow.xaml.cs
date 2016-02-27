@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using Stenography.Image_Tools;
 
 namespace Stenography
 {
@@ -20,6 +21,7 @@ namespace Stenography
     /// </summary>
     public partial class DisplayImageWindow : Window
     {
+        // TODO: Arrange elements properly in the grid
         public DisplayImageWindow()
         {
             InitializeComponent();
@@ -27,24 +29,13 @@ namespace Stenography
 
         private void loadImageButton_Click(object sender, RoutedEventArgs e)
         {
-            loadImage(this.stegImage);
-        }
-
-        private void loadImage(Image image)
-        {
-            OpenFileDialog fd = new OpenFileDialog();
-            bool? result = fd.ShowDialog();
-
-            if (result == true)
-            {
-                BitmapImage bitmapImage = new BitmapImage(new Uri(fd.FileName));
-                image.Source = bitmapImage;
-            }
+            Util.LoadImage(this.stegImage);
+            hiddenImage.Source = stegImage.Source;
 
             HiddenImageExtractor hie = new HiddenImageExtractor((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
+            // TODO: make this code asynchronous
             System.Drawing.Bitmap b = hie.getHiddenImage();
-
-            b.Save(@"C:\Users\umar\Pictures\wedding\hidden.jpg");
+            hiddenImage.Source = ImageUtil.loadBitmap(b);
         }
     }
 }

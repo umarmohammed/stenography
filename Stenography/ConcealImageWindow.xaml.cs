@@ -20,6 +20,7 @@ namespace Stenography
     /// </summary>
     public partial class ConcealImageWindow : Window
     {
+        // TODO: Arrange elements properly in the grid.
         public ConcealImageWindow()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace Stenography
             loadImage(this.hiddenImage);
         }
 
+        // TODO: tidy up use Util.LoadImage
         private void loadImage(Image image)
         {
             OpenFileDialog fd = new OpenFileDialog();
@@ -53,6 +55,8 @@ namespace Stenography
             {
                 return;
             }
+
+            // TODO: make this code asynchronous
             StegoImage stegImage = new StegoImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
             SaveFileDialog fd = new SaveFileDialog();
             bool? result = fd.ShowDialog();
