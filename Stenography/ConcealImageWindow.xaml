@@ -5,14 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stenography"
         mc:Ignorable="d"
-        Title="ConcealImageWindow" Height="auto" Width="auto">
+        Title="ConcealImageWindow" Height="556.063" Width="616.345">
     <Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="10,24,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="loadVisibleImageButton" Content="Load Visible Image" HorizontalAlignment="Left" Margin="4,382,0,0" VerticalAlignment="Top" Click="loadVisibleImageButton_Click"/>
-        <Image x:Name="visibleImage" HorizontalAlignment="Left" Height="300" Margin="10,66,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="loadHiddenImageButton" Content="Load Hidden Image" HorizontalAlignment="Left" Margin="640,382,0,0" VerticalAlignment="Top" Click="loadHiddenImageButton_Click"/>
-        <Button x:Name="saveStegoImageButton" Content="Save Stego Image" HorizontalAlignment="Left" Margin="295,473,0,0" VerticalAlignment="Top" Click="saveStegoImageButton_Click"/>
-        <Image x:Name="hiddenImage" HorizontalAlignment="Left" Height="342" Margin="448,24,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0" Grid.Row="0" x:Name="visibleImage" HorizontalAlignment="Left" Height="300"  Width="300" VerticalAlignment="Top"/>
+        <Button Grid.Column="0" Grid.Row="1" x:Name="loadVisibleImageButton" Content="Load Visible Image" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="loadVisibleImageButton_Click"/>
+        <Image Grid.Column="1" Grid.Row="0" x:Name="hiddenImage" HorizontalAlignment="Left" Height="300" Width="300" VerticalAlignment="Top"/>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="loadHiddenImageButton" Content="Load Hidden Image" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="loadHiddenImageButton_Click"/>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="saveStegoImageButton" Content="Save Stego Image" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="saveStegoImageButton_Click"/>
+
 
     </Grid>
 </Window>
