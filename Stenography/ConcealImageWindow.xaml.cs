@@ -28,25 +28,12 @@ namespace Stenography
 
         private void loadVisibleImageButton_Click(object sender, RoutedEventArgs e)
         {
-            loadImage(this.visibleImage);
+            Util.LoadImage(this.visibleImage);
         }
 
         private void loadHiddenImageButton_Click(object sender, RoutedEventArgs e)
         {
-            loadImage(this.hiddenImage);
-        }
-
-        // TODO: tidy up use Util.LoadImage
-        private void loadImage(Image image)
-        {
-            OpenFileDialog fd = new OpenFileDialog();
-            bool? result = fd.ShowDialog();
-
-            if (result == true)
-            {
-                BitmapImage bitmapImage = new BitmapImage(new Uri(fd.FileName));
-                image.Source = bitmapImage;
-            }
+            Util.LoadImage(this.hiddenImage);
         }
 
         private void saveStegoImageButton_Click(object sender, RoutedEventArgs e)
