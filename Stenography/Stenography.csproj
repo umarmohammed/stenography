@@ -57,6 +57,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Image Tools\ImageUtil.cs" />
+    <Compile Include="Image Tools\PixelMap.cs" />
+    <Compile Include="Image Tools\PixelMapper.cs" />
     <Compile Include="StegoImage.cs" />
     <Page Include="ConcealImageWindow.xaml">
       <SubType>Designer</SubType>

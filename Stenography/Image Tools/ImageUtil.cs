@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Collections;
 
 namespace Stenography.Image_Tools
 {
@@ -119,6 +120,18 @@ namespace Stenography.Image_Tools
             }
 
             return sourceImageSize != targetImageSize;
+        }
+
+        public static int toInt(this BitArray bitArray)
+        {
+
+            if (bitArray.Length > 32)
+                throw new ArgumentException("Argument length shall be at most 32 bits.");
+
+            int[] array = new int[1];
+            bitArray.CopyTo(array, 0);
+            return array[0];
+
         }
     }
 }
