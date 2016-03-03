@@ -30,7 +30,11 @@ namespace Stenography
         private void loadImageButton_Click(object sender, RoutedEventArgs e)
         {
             Util.LoadImage(this.stegImage);
-            hiddenImage.Source = stegImage.Source;
+
+            if (this.stegImage.Source == null)
+            {
+                return;
+            }
 
             HiddenImageExtractor hie = new HiddenImageExtractor((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
             // TODO: make this code asynchronous

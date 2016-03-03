@@ -49,6 +49,7 @@ namespace Stenography
             {
                 StegoImage stegImage = new StegoImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
                 SaveFileDialog fd = new SaveFileDialog();
+                fd.Filter = "jpg|*.jpg|bmp|*.bmp|png|*.png";
                 bool? result = fd.ShowDialog();
 
                 if (result == true)
