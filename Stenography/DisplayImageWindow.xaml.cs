@@ -29,6 +29,7 @@ namespace Stenography
 
         private void loadImageButton_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: Investigate GDI error
             Util.LoadImage(this.stegImage);
 
             if (this.stegImage.Source == null)
