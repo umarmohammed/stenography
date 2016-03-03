@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using Stenography.Stenography_Algorithm;
 
 namespace Stenography
 {
@@ -45,7 +46,6 @@ namespace Stenography
             // TODO: make this code asynchronous
             try
             {
-                StegoImage stegImage = new StegoImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
                 SaveFileDialog fd = new SaveFileDialog();
                 fd.Filter = "jpg|*.jpg|bmp|*.bmp|png|*.png";
                 bool? result = fd.ShowDialog();
@@ -56,8 +56,8 @@ namespace Stenography
                     {
                         throw new InvalidOperationException("Cannot save to hidden or visible image filename");
                     }
-                    stegImage.CreateStegImage();
-                    stegImage.SaveStegImage(fd.FileName);
+                    System.Drawing.Bitmap stegBitmap = StenographyAlgorithm.EmbedImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
+                    stegBitmap.Save(fd.FileName);
                 }
             }
             catch (Exception ex)

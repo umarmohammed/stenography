@@ -59,11 +59,10 @@
     <Compile Include="DisplayImageWindow.xaml.cs">
       <DependentUpon>DisplayImageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Stenography\HiddenImageExtractor.cs" />
     <Compile Include="Image Tools\ImageResizer.cs" />
     <Compile Include="Image Tools\PixelMap.cs" />
     <Compile Include="Image Tools\PixelMapper.cs" />
-    <Compile Include="Stenography\StegoImage.cs" />
+    <Compile Include="Stenography Algorithm\StenographyAlgorithm.cs" />
     <Compile Include="Util.cs" />
     <Page Include="ConcealImageWindow.xaml">
       <SubType>Designer</SubType>

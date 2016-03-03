@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using Stenography.Image_Tools;
-
+using Stenography.Stenography_Algorithm;
+    
 namespace Stenography
 {
     /// <summary>
@@ -39,9 +40,8 @@ namespace Stenography
             
             try
             {
-                HiddenImageExtractor hie = new HiddenImageExtractor((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
                 // TODO: make this code asynchronous
-                System.Drawing.Bitmap b = hie.GetHiddenImage();
+                System.Drawing.Bitmap b = StenographyAlgorithm.ExtractHiddenImage((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
                 hiddenImage.Source = Util.LoadBitmap(b);
             }
             catch (Exception ex)
