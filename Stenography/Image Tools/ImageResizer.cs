@@ -30,8 +30,6 @@ namespace Stenography.Image_Tools
             return resizeBitmap(sourceImageSize, targetImageBitmap, scale);
         }
 
-       
-
         private static Bitmap resizeBitmap(Size sourceImageSize, Bitmap sourceBMP, double scale)
         {
             int width = Convert.ToInt32(sourceImageSize.Width * scale);
