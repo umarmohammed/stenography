@@ -25,6 +25,11 @@ namespace Stenography
             }
         }
 
+        public static string GetImageFilename(this Image image)
+        {
+            return (image.Source as BitmapImage).UriSource.OriginalString;
+        }
+
         // Convert extension method convert a BitArray to an integer
         public static int ToInt(this BitArray bitArray)
         {

@@ -40,7 +40,7 @@ namespace Stenography
             try
             {
                 // TODO: make this code asynchronous
-                System.Drawing.Bitmap b = StenographyAlgorithm.ExtractHiddenImage((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
+                System.Drawing.Bitmap b = StenographyAlgorithm.ExtractHiddenImage(this.stegImage.GetImageFilename());
                 hiddenImage.Source = Util.LoadBitmap(b);
             }
             catch (Exception ex)

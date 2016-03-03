@@ -47,7 +47,8 @@ namespace Stenography
             try
             {
                 SaveFileDialog fd = new SaveFileDialog();
-                fd.Filter = "jpg|*.jpg|bmp|*.bmp|png|*.png";
+                // TODO: handle other file formats
+                fd.Filter = "bmp|*.bmp";
                 bool? result = fd.ShowDialog();
 
                 if (result == true)
@@ -56,8 +57,7 @@ namespace Stenography
                     {
                         throw new InvalidOperationException("Cannot save to hidden or visible image filename");
                     }
-                    System.Drawing.Bitmap stegBitmap = StenographyAlgorithm.EmbedImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
-                    // TODO: save image format according to file extension
+                    System.Drawing.Bitmap stegBitmap = StenographyAlgorithm.EmbedImage(this.visibleImage.GetImageFilename(), this.hiddenImage.GetImageFilename());
                     stegBitmap.Save(fd.FileName);
                 }
             }
