@@ -22,7 +22,6 @@ namespace Stenography
     /// </summary>
     public partial class DisplayImageWindow : Window
     {
-        // TODO: Arrange elements properly in the grid
         public DisplayImageWindow()
         {
             InitializeComponent();

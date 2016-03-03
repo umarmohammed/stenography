@@ -5,10 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stenography"
         mc:Ignorable="d"
-        Title="DisplayImageWindow" Height="auto" Width="auto">
+        Title="DisplayImageWindow" Height="556.063" Width="616.345">
     <Grid>
-        <Image x:Name="stegImage" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" />
-        <Image x:Name="hiddenImage" HorizontalAlignment="Left" Height="300" Margin="749,10,0,0" VerticalAlignment="Top" />
-        <Button x:Name="loadImageButton" Content="Load Image" HorizontalAlignment="Left" Margin="10,336,0,0" VerticalAlignment="Top" Width="76" Click="loadImageButton_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Line X1="0" Y1="2" X2="1"  Y2="2" 
+              Stroke="Black" StrokeThickness="5" Stretch="Uniform" Grid.ColumnSpan="2" Margin="0,185,0,102" Grid.RowSpan="2"/>
+
+        <Rectangle Grid.Column="0" Grid.Row="0" x:Name="rect1" Height="300" Width="300" Fill="#FFA8A8A8"/>
+        <Rectangle Grid.Column="1" Grid.Row="0" x:Name="rect2" Height="300" Width="300" Fill="#FFA8A8A8"/>
+       
+        
+        <Image Grid.Column="0" Grid.Row="0" x:Name="stegImage" HorizontalAlignment="Center" Height="300"  Width="300" VerticalAlignment="Top" />
+        <Label Grid.Column="0" Grid.Row="1" x:Name="visibleImageLabel" Content="Visible Image" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        <Image Grid.Column="1" Grid.Row="0" x:Name="hiddenImage"  HorizontalAlignment="Center" Height="300" Width="300" VerticalAlignment="Top"/>
+        <Label Grid.Column="1" Grid.Row="1" x:Name="hiddenImageLabel" Content="Hidden Image" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        <Button Grid.Column="0" Grid.Row="1"  x:Name="loadImageButton" Content="Load Image" HorizontalAlignment="Center" VerticalAlignment="Center" Click="loadImageButton_Click" Grid.ColumnSpan="2"/>
+        <Line X1="1" Y1="0" X2="1"  Y2="1" 
+              Stroke="Black" StrokeThickness="5" Stretch="Uniform" Grid.ColumnSpan="2" Margin="300,0,295,0">
+            <Line.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.401"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Line.RenderTransform>
+        </Line>
     </Grid>
 </Window>
