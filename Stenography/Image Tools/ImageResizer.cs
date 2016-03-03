@@ -17,7 +17,6 @@ namespace Stenography.Image_Tools
 
     static class ImageResizer
     {
-        // TODO: move the resizing code to a seperate class
         //1 Crops the targetImageBitmap so that it has the same aspect ratio defined by SourceImageSize.
         //2 Resizes targetImageBitmap to scale * sourceImageSize
         public static Bitmap CropAndResizeBitmap(Size sourceImageSize, Bitmap targetImageBitmap, double scale)
@@ -28,15 +27,15 @@ namespace Stenography.Image_Tools
                 targetImageBitmap = cropImage(sourceImageSize, targetImageBitmap);
             }
 
-            return resizeBitmap(targetImageBitmap, scale);
+            return resizeBitmap(sourceImageSize, targetImageBitmap, scale);
         }
 
        
 
-        private static Bitmap resizeBitmap(Bitmap sourceBMP, double scale)
+        private static Bitmap resizeBitmap(Size sourceImageSize, Bitmap sourceBMP, double scale)
         {
-            int width = Convert.ToInt32(sourceBMP.Size.Width * scale);
-            int height = Convert.ToInt32(sourceBMP.Size.Height * scale);
+            int width = Convert.ToInt32(sourceImageSize.Width * scale);
+            int height = Convert.ToInt32(sourceImageSize.Height * scale);
             Bitmap result = new Bitmap(width, height);
             using (Graphics g = Graphics.FromImage(result))
                 g.DrawImage(sourceBMP, 0, 0, width, height);
@@ -77,34 +76,26 @@ namespace Stenography.Image_Tools
                 throw new Exception("Image Orienatations must be the same");
             }
 
-            if (isImageLarger(targetImageSize, sourceImageSize))
-            {
-                return targetImageBitmap.cropAtRect(new Rectangle(Point.Empty, sourceImageSize));
-            }
+            return targetImageBitmap.cropAtRect(getCropRectangle(sourceImageSize, targetImageSize));
+        }
 
+        private static Rectangle getCropRectangle(Size sourceImageSize, Size targetImageSize)
+        {
             double sourceAspectRatio = getAspectRatio(sourceImageSize);
             double targetAspectRatio = getAspectRatio(targetImageSize);
 
+            int rectWidth  = targetImageSize.Width;
+            int rectHeight = targetImageSize.Height;
             if (targetAspectRatio > sourceAspectRatio)
             {
-                // TODO: Handle cropping width
-                // crop width
-                // check ratio
-                // while ratio not within tolerance
-                // crop height
-                // crop width
-                // check ratio ratio
-                return targetImageBitmap;
+                rectWidth = Convert.ToInt32(targetImageSize.Height * sourceAspectRatio);
+            }
+            if (targetAspectRatio < sourceAspectRatio)
+            {
+                rectHeight = Convert.ToInt32(targetImageSize.Width / sourceAspectRatio);
             }
 
-            // TODO: handle cropping height
-            // crop height
-            // check ratio
-            // while ratio not within tolerance
-            // crop width
-            // crop height
-            // check ratio
-            return targetImageBitmap;
+            return new Rectangle(0, 0, rectWidth, rectHeight);
         }
 
         private static bool isImageLarger(Size image1Size, Size image2Size)

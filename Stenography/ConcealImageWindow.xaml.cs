@@ -43,7 +43,6 @@ namespace Stenography
             }
 
             // TODO: make this code asynchronous
-            // TODO: Investigate error with large files in vaddress, flag visible image, and burj hidden image
             try
             {
                 StegoImage stegImage = new StegoImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
