@@ -19,6 +19,7 @@ namespace Stenography
             stegImage = new Bitmap(stegImageFilename);
         }
 
+        // TODO: Fix case of method signatures - public should be PascalCase
         public Bitmap getHiddenImage()
         {
             Bitmap hiddenImage = new Bitmap(stegImage.Size.Width / 2, stegImage.Size.Height / 2);

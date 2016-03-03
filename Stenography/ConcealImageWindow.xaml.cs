@@ -20,7 +20,6 @@ namespace Stenography
     /// </summary>
     public partial class ConcealImageWindow : Window
     {
-        // TODO: Arrange elements properly in the grid.
         public ConcealImageWindow()
         {
             InitializeComponent();
@@ -44,16 +43,34 @@ namespace Stenography
             }
 
             // TODO: make this code asynchronous
-            // TODO: put this code in a try catch, display exception error in message box
-            StegoImage stegImage = new StegoImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
-            SaveFileDialog fd = new SaveFileDialog();
-            bool? result = fd.ShowDialog();
-
-            if (result == true)
+            // TODO: Add options for jpg, bmp, png etc when saving file
+            // TODO: Investigate error with large files in vaddress, flag visible image, and burj hidden image
+            try
             {
-                stegImage.createStegImage();
-                stegImage.saveStegImage(fd.FileName);
+                StegoImage stegImage = new StegoImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
+                SaveFileDialog fd = new SaveFileDialog();
+                bool? result = fd.ShowDialog();
+
+                if (result == true)
+                {
+                    if (isExistingFilename(fd.FileName))
+                    {
+                        throw new InvalidOperationException("Cannot save to hidden or visible image filename");
+                    }
+                    stegImage.createStegImage();
+                    stegImage.saveStegImage(fd.FileName);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private bool isExistingFilename(string filename)
+        {
+            return filename == (this.visibleImage.Source as BitmapImage).UriSource.OriginalString || filename == (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString;
         }
     }
 }
