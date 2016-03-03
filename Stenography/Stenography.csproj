@@ -60,10 +60,10 @@
       <DependentUpon>DisplayImageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Image Tools\ImageResizer.cs" />
-    <Compile Include="Image Tools\PixelMap.cs" />
-    <Compile Include="Image Tools\PixelMapper.cs" />
+    <Compile Include="Stenography Algorithm\PixelMap.cs" />
+    <Compile Include="Stenography Algorithm\PixelMapper.cs" />
     <Compile Include="Stenography Algorithm\StenographyAlgorithm.cs" />
-    <Compile Include="Util.cs" />
+    <Compile Include="Image Tools\Util.cs" />
     <Page Include="ConcealImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

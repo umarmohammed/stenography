@@ -44,6 +44,7 @@ namespace Stenography.Stenography_Algorithm
             Bitmap visibleImage = new Bitmap(visibleImageFilename);
             Bitmap hiddenImage = new Bitmap(hiddenImageFilename);
 
+            // TODO: don't need to resize to a half if hidden image is less than a half
             hiddenImage = ImageResizer.CropAndResizeBitmap(visibleImage.Size, hiddenImage, 0.5);
             Bitmap stegImage = new Bitmap(visibleImage.Width, visibleImage.Height);
 

@@ -57,6 +57,7 @@ namespace Stenography
                         throw new InvalidOperationException("Cannot save to hidden or visible image filename");
                     }
                     System.Drawing.Bitmap stegBitmap = StenographyAlgorithm.EmbedImage((this.visibleImage.Source as BitmapImage).UriSource.OriginalString, (this.hiddenImage.Source as BitmapImage).UriSource.OriginalString);
+                    // TODO: save image format according to file extension
                     stegBitmap.Save(fd.FileName);
                 }
             }
