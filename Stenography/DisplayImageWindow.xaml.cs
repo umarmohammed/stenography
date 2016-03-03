@@ -41,7 +41,7 @@ namespace Stenography
                 HiddenImageExtractor hie = new HiddenImageExtractor((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
                 // TODO: make this code asynchronous
                 System.Drawing.Bitmap b = hie.GetHiddenImage();
-                hiddenImage.Source = ImageUtil.LoadBitmap(b);
+                hiddenImage.Source = Util.LoadBitmap(b);
             }
             catch (Exception ex)
             {

@@ -60,6 +60,7 @@
       <DependentUpon>DisplayImageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="HiddenImageExtractor.cs" />
+    <Compile Include="Image Tools\ImageResizer.cs" />
     <Compile Include="Image Tools\ImageUtil.cs" />
     <Compile Include="Image Tools\PixelMap.cs" />
     <Compile Include="Image Tools\PixelMapper.cs" />

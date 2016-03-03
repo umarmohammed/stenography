@@ -30,7 +30,7 @@ namespace Stenography
 
         public void CreateStegImage()
         {
-            hiddenImage = ImageUtil.CropAndResizeBitmap(visibleImage.Size, hiddenImage, 0.5);
+            hiddenImage = ImageResizer.CropAndResizeBitmap(visibleImage.Size, hiddenImage, 0.5);
             stegImage = new Bitmap(visibleImage.Width, visibleImage.Height);
          
             // TODO: Move all this code into a common Stenography Algorithm class
