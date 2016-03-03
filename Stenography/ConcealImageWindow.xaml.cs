@@ -43,7 +43,6 @@ namespace Stenography
             }
 
             // TODO: make this code asynchronous
-            // TODO: Add options for jpg, bmp, png etc when saving file
             // TODO: Investigate error with large files in vaddress, flag visible image, and burj hidden image
             try
             {
@@ -58,8 +57,8 @@ namespace Stenography
                     {
                         throw new InvalidOperationException("Cannot save to hidden or visible image filename");
                     }
-                    stegImage.createStegImage();
-                    stegImage.saveStegImage(fd.FileName);
+                    stegImage.CreateStegImage();
+                    stegImage.SaveStegImage(fd.FileName);
                 }
             }
             catch (Exception ex)

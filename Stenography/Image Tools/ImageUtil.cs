@@ -20,6 +20,7 @@ namespace Stenography.Image_Tools
 
     static class ImageUtil
     {
+        // TODO: move the resizing code to a seperate class
         //1 Crops the targetImageBitmap so that it has the same aspect ratio defined by SourceImageSize.
         //2 Resizes targetImageBitmap to scale * sourceImageSize
         public static Bitmap CropAndResizeBitmap(Size sourceImageSize, Bitmap targetImageBitmap, double scale)
@@ -30,11 +31,11 @@ namespace Stenography.Image_Tools
                 targetImageBitmap = cropImage(sourceImageSize, targetImageBitmap);
             }
 
-            return ResizeBitmap(targetImageBitmap, scale);
+            return resizeBitmap(targetImageBitmap, scale);
         }
 
         // Convert extension method convert a BitArray to an integer
-        public static int toInt(this BitArray bitArray)
+        public static int ToInt(this BitArray bitArray)
         {
 
             if (bitArray.Length > 32)
@@ -51,7 +52,7 @@ namespace Stenography.Image_Tools
 
         // Convert a System.Drawing.Bitmap to BitmapSource so that it can be 
         // used as a source for a WPF Image
-        public static BitmapSource loadBitmap(System.Drawing.Bitmap source)
+        public static BitmapSource LoadBitmap(System.Drawing.Bitmap source)
         {
             IntPtr ip = source.GetHbitmap();
             BitmapSource bs = null;
@@ -69,7 +70,7 @@ namespace Stenography.Image_Tools
             return bs;
         }
 
-        private static Bitmap ResizeBitmap(Bitmap sourceBMP, double scale)
+        private static Bitmap resizeBitmap(Bitmap sourceBMP, double scale)
         {
             int width = Convert.ToInt32(sourceBMP.Size.Width * scale);
             int height = Convert.ToInt32(sourceBMP.Size.Height * scale);
@@ -79,7 +80,7 @@ namespace Stenography.Image_Tools
             return result;
         }
 
-        private static Bitmap CropAtRect(this Bitmap b, Rectangle r)
+        private static Bitmap cropAtRect(this Bitmap b, Rectangle r)
         {
             Bitmap nb = new Bitmap(r.Width, r.Height);
             Graphics g = Graphics.FromImage(nb);
@@ -117,7 +118,7 @@ namespace Stenography.Image_Tools
 
             if (isImageLarger(targetImageSize, sourceImageSize))
             {
-                return targetImageBitmap.CropAtRect(new Rectangle(Point.Empty, sourceImageSize));
+                return targetImageBitmap.cropAtRect(new Rectangle(Point.Empty, sourceImageSize));
             }
 
             double sourceAspectRatio = getAspectRatio(sourceImageSize);

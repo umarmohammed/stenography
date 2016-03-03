@@ -31,7 +31,7 @@ namespace Stenography.Image_Tools
             }
         }
 
-        public IEnumerable<PixelMap> getHiddenToVisiblePixelMapEnumerator()
+        public IEnumerable<PixelMap> GetHiddenToVisiblePixelMapEnumerator()
         {
             for (int i = 0; i < pixelMaps.Count(); i++)
             {

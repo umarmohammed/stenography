@@ -20,22 +20,22 @@ namespace Stenography
         }
 
         // TODO: Fix case of method signatures - public should be PascalCase
-        public Bitmap getHiddenImage()
+        public Bitmap GetHiddenImage()
         {
             Bitmap hiddenImage = new Bitmap(stegImage.Size.Width / 2, stegImage.Size.Height / 2);
 
             // TODO: move this code into a common StenographyAlgorithm class
             PixelMapper pixelMapper = new PixelMapper(stegImage.Size, hiddenImage.Size);
 
-            foreach (PixelMap pm in pixelMapper.getHiddenToVisiblePixelMapEnumerator())
+            foreach (PixelMap pm in pixelMapper.GetHiddenToVisiblePixelMapEnumerator())
             {
                 BitArray r = extractChannel(stegImage, hiddenImage, pm, StegoImage.Channel.R);
                 BitArray g = extractChannel(stegImage, hiddenImage, pm, StegoImage.Channel.G);
                 BitArray b = extractChannel(stegImage, hiddenImage, pm, StegoImage.Channel.B);
 
-                Color pixelColor = Color.FromArgb(r.toInt(), g.toInt(), b.toInt());
+                Color pixelColor = Color.FromArgb(r.ToInt(), g.ToInt(), b.ToInt());
 
-                hiddenImage.SetPixel(pm.hiddenImagePoint.X, pm.hiddenImagePoint.Y, pixelColor);
+                hiddenImage.SetPixel(pm.HiddenImagePoint.X, pm.HiddenImagePoint.Y, pixelColor);
             }
 
             return hiddenImage;
@@ -45,11 +45,11 @@ namespace Stenography
         {
             BitArray hiddenChannel = new BitArray(8);
 
-            foreach(PixelBitsMap pbm in pm.visibleImagePoints)
+            foreach(PixelBitsMap pbm in pm.VisibleImagePoints)
             {
-                BitArray stegChannel = getPixelBitArray(stegImage, pbm.point.X, pbm.point.Y, c);
-                hiddenChannel[pbm.sourceBit1] = stegChannel[0];
-                hiddenChannel[pbm.sourceBit2] = stegChannel[1];
+                BitArray stegChannel = getPixelBitArray(stegImage, pbm.Point.X, pbm.Point.Y, c);
+                hiddenChannel[pbm.SourceBit1] = stegChannel[0];
+                hiddenChannel[pbm.SourceBit2] = stegChannel[1];
             }
 
             return hiddenChannel;

@@ -28,7 +28,7 @@ namespace Stenography
             hiddenImage = new Bitmap(hiddenImageFilename);
         } 
 
-        public void createStegImage()
+        public void CreateStegImage()
         {
             hiddenImage = ImageUtil.CropAndResizeBitmap(visibleImage.Size, hiddenImage, 0.5);
             stegImage = new Bitmap(visibleImage.Width, visibleImage.Height);
@@ -36,7 +36,7 @@ namespace Stenography
             // TODO: Move all this code into a common Stenography Algorithm class
             PixelMapper pixelMapper = new PixelMapper(visibleImage.Size, hiddenImage.Size);
 
-            foreach (PixelMap pm in pixelMapper.getHiddenToVisiblePixelMapEnumerator())
+            foreach (PixelMap pm in pixelMapper.GetHiddenToVisiblePixelMapEnumerator())
             {
                 setBits(stegImage, visibleImage, hiddenImage, pm);
             }
@@ -44,25 +44,25 @@ namespace Stenography
 
         private void setBits(Bitmap stegImage, Bitmap VisibleImage, Bitmap hiddenImage, PixelMap pm)
         {
-            foreach(PixelBitsMap pbm in pm.visibleImagePoints)
+            foreach(PixelBitsMap pbm in pm.VisibleImagePoints)
             {
-                BitArray r = copyChannel(VisibleImage, hiddenImage, pm.hiddenImagePoint, pbm, Channel.R);
-                BitArray g = copyChannel(VisibleImage, hiddenImage, pm.hiddenImagePoint, pbm, Channel.G);
-                BitArray b = copyChannel(VisibleImage, hiddenImage, pm.hiddenImagePoint, pbm, Channel.B);
+                BitArray r = copyChannel(VisibleImage, hiddenImage, pm.HiddenImagePoint, pbm, Channel.R);
+                BitArray g = copyChannel(VisibleImage, hiddenImage, pm.HiddenImagePoint, pbm, Channel.G);
+                BitArray b = copyChannel(VisibleImage, hiddenImage, pm.HiddenImagePoint, pbm, Channel.B);
 
-                Color pixelColor = Color.FromArgb(r.toInt(), g.toInt(), b.toInt());
+                Color pixelColor = Color.FromArgb(r.ToInt(), g.ToInt(), b.ToInt());
 
-                stegImage.SetPixel(pbm.point.X, pbm.point.Y, pixelColor);
+                stegImage.SetPixel(pbm.Point.X, pbm.Point.Y, pixelColor);
             }
         }
 
         private BitArray copyChannel(Bitmap visibleImage, Bitmap hiddenImage, Point hiddenImagePoint, PixelBitsMap pbm, Channel c)
         {
-            BitArray visibleChannel = getPixelBitArray(visibleImage, pbm.point.X, pbm.point.Y, c);
+            BitArray visibleChannel = getPixelBitArray(visibleImage, pbm.Point.X, pbm.Point.Y, c);
             BitArray hiddenChannel = getPixelBitArray(hiddenImage, hiddenImagePoint.X, hiddenImagePoint.Y, c);
 
-            visibleChannel[0] = hiddenChannel[pbm.sourceBit1];
-            visibleChannel[1] = hiddenChannel[pbm.sourceBit2];
+            visibleChannel[0] = hiddenChannel[pbm.SourceBit1];
+            visibleChannel[1] = hiddenChannel[pbm.SourceBit2];
 
             return visibleChannel;
         }
@@ -92,7 +92,7 @@ namespace Stenography
             return new BitArray(tmp);
         }
 
-        public void saveStegImage(string filename)
+        public void SaveStegImage(string filename)
         {
             if (stegImage != null)
             {

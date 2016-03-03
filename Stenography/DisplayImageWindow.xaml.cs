@@ -35,12 +35,18 @@ namespace Stenography
             {
                 return;
             }
-
-            HiddenImageExtractor hie = new HiddenImageExtractor((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
-            // TODO: make this code asynchronous
-            // TODO: put this code in a try catch, display exception error in message box
-            System.Drawing.Bitmap b = hie.getHiddenImage();
-            hiddenImage.Source = ImageUtil.loadBitmap(b);
+            
+            try
+            {
+                HiddenImageExtractor hie = new HiddenImageExtractor((this.stegImage.Source as BitmapImage).UriSource.OriginalString);
+                // TODO: make this code asynchronous
+                System.Drawing.Bitmap b = hie.GetHiddenImage();
+                hiddenImage.Source = ImageUtil.LoadBitmap(b);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
