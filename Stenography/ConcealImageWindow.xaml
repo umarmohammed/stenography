@@ -37,7 +37,7 @@
         <Image Grid.Column="1" Grid.Row="0" x:Name="hiddenImage" HorizontalAlignment="Center" Height="300" Width="300" VerticalAlignment="Top"/>
         <Button Grid.Column="1" Grid.Row="1" x:Name="loadHiddenImageButton" Content="Load Hidden Image" HorizontalAlignment="Center"  VerticalAlignment="Top" Click="loadHiddenImageButton_Click"/>
         <Button Grid.Column="0" Grid.Row="1" x:Name="saveStegoImageButton" Content="Save Stego Image" HorizontalAlignment="Center" VerticalAlignment="Center" Click="saveStegoImageButton_Click" Grid.ColumnSpan="2"/>
-
+        <Label Grid.Column="0" Grid.Row="1" x:Name="progressLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold"/>
 
     </Grid>
 </Window>

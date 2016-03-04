@@ -36,14 +36,13 @@ namespace Stenography
             Util.LoadImage(this.hiddenImage);
         }
 
-        private void saveStegoImageButton_Click(object sender, RoutedEventArgs e)
+        private async void saveStegoImageButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.visibleImage.Source == null || this.hiddenImage.Source == null)
             {
                 return;
             }
 
-            // TODO: make this code asynchronous
             try
             {
                 SaveFileDialog fd = new SaveFileDialog();
@@ -57,14 +56,42 @@ namespace Stenography
                     {
                         throw new InvalidOperationException("Cannot save to hidden or visible image filename");
                     }
-                    System.Drawing.Bitmap stegBitmap = StenographyAlgorithm.EmbedImage(this.visibleImage.GetImageFilename(), this.hiddenImage.GetImageFilename());
-                    stegBitmap.Save(fd.FileName);
+                    await saveStegImage(fd.FileName);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            
+        }
+
+        private async Task saveStegImage(string filename)
+        {
+            this.progressLabel.Content = "Please wait creating Image ...";
+            var visibleImageFilename = this.visibleImage.GetImageFilename();
+            var hiddenImageFilename = this.hiddenImage.GetImageFilename();
+            System.Drawing.Bitmap stegBitmap = null;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    stegBitmap = StenographyAlgorithm.EmbedImage(visibleImageFilename, hiddenImageFilename);
+                    stegBitmap.Save(filename);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            if (stegBitmap == null)
+            {
+                this.progressLabel.Content = "Error";
+                return;
+            }
+
+            this.progressLabel.Content = "Image saved";
             
         }
 

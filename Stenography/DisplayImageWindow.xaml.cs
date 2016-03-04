@@ -27,7 +27,7 @@ namespace Stenography
             InitializeComponent();
         }
 
-        private void loadImageButton_Click(object sender, RoutedEventArgs e)
+        private async void loadImageButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Investigate GDI error
             Util.LoadImage(this.stegImage);
@@ -39,14 +39,39 @@ namespace Stenography
             
             try
             {
-                // TODO: make this code asynchronous
-                System.Drawing.Bitmap b = StenographyAlgorithm.ExtractHiddenImage(this.stegImage.GetImageFilename());
-                hiddenImage.Source = Util.LoadBitmap(b);
+                await extractImage();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private async Task extractImage()
+        {
+            this.progressLabel.Content = "Please wait extracting image ...";
+            string stegImageFilename = this.stegImage.GetImageFilename();
+            System.Drawing.Bitmap hiddenBitmap = null;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    hiddenBitmap = StenographyAlgorithm.ExtractHiddenImage(stegImageFilename);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            if (hiddenBitmap == null)
+            {
+                this.progressLabel.Content = "Error";
+                return;
+            }
+           
+            hiddenImage.Source = Util.LoadBitmap(hiddenBitmap);
+            this.progressLabel.Content = "Image extracted";
         }
     }
 }
